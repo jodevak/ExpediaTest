@@ -13,7 +13,7 @@ const https = require('https');
 app.use(express.static(path.join(__dirname,'public')));
 
 //Current Process to start listening for incoming requests
-app.listen(3000, '0.0.0.0', function() {
+app.listen(process.env.PORT || 80, '0.0.0.0', function() {
   console.log("Api is listening");
 });
 
