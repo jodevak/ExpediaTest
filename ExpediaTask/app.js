@@ -106,7 +106,7 @@ app.use(cookieParser());
 
 //Expedia Main Url
 var url="https://offersvc.expedia.com/offers/v2/getOffers?scenario=deal-finder&page=foo&uid=foo&productType=Hotel";
-var mainURI="https://powerful-bastion-38270.herokuapp.com/";
+var mainURI="https://powerful-bastion-38270.herokuapp.com";
 
 
 app.get('/*', function(req, res, next){ 
