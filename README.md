@@ -20,7 +20,7 @@ Since the api request to a specific hotel is unknown, the last regular or search
 clicks on a hotel offer the server side will respond with a another dynamic content web page containing the detailed information about the hotel offer.
 For the sake of maintining the simplicity of this app; Redis framework was not used and the stored/cached response will be just a regular stored JSON object. 
 
-important note,in case of home page, the main fetched json will be split into another one containing only fields that are necessary to be rendered in home page. --> optimization.
+important note,in case of home page request, the main fetched json will be split into another one containing only fields that are necessary to be rendered in home page, where as full information about any hotel offer will only be sent to a specific hotel hotel request  --> optimization.
 
 # Prerequisite
 
