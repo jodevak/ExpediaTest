@@ -168,7 +168,15 @@
                                     <%=hotel.hotelPricingInfo.currency%>
                                         
                                         </span>
+                                    </div><div class="item">
+                                        <i class="awe-icon awe-icon-unlock"></i>
+                                        <span >Hotel total base rate 
+                                        <%=hotel.hotelPricingInfo.hotelTotalBaseRate%>  <%=hotel.hotelPricingInfo.currency%>
+                                        
+                                        </span>
                                     </div>
+                                   
+                                                
                             </div>
                         </div>
                     </div>
@@ -322,7 +330,7 @@
                                                 <th class="room-people">Average Pricing/Night</th>
                                                 <th class="room-condition">Original price/Night</th>
                                                 <th class="room-price">Today total price</th>
-                                                <th class="">Total Base Rate</th>
+                                            
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -360,16 +368,22 @@
                                                 <td class="room-price">
                                                     <div class="price">
                                                         <span class="amount"></span>
-                                                        <em><%=hotel.hotelUrgencyInfo.numberOfRoomsLeft%> rooms available</em>
+                                                        <em>
+                                                            <%
+                                        var saved=
+                                         Number(hotel.hotelPricingInfo.originalPricePerNight)+
+                                         Number(hotel.hotelPricingInfo.hotelTotalBaseRate)+
+                                         Number(hotel.hotelPricingInfo.hotelTotalTaxesAndFees) +
+                                         Number(hotel.hotelPricingInfo.hotelTotalMandatoryTaxesAndFees)
+                                         +
+                                         Number(hotel.hotelPricingInfo.totalPriceValue);
+                                         saved=parseInt(saved);
+                                         %>
+                                            <%=saved%> <%=hotel.hotelPricingInfo.currency%>
+                                                        </em>
                                                     </div>
                                                 </td>
-                                                <td class="room-price">
-                                                    <div class="price">
 
-                                                    <%=hotel.hotelPricingInfo.hotelTotalBaseRate%> 
-                                                    <%=hotel.hotelPricingInfo.currency%>
-                                                    </div>
-                                                </td>
                                             </tr>
                                             
                                         </tbody>
@@ -492,9 +506,7 @@
                                 <img src="images/logo-footer.png" alt="">
                             </div>
                             <div class="widget_content">
-                                <p>25 California Avenue, Santa Monica, California. USA</p>
-                                <p>+1-888-8765-1234</p>
-                                <a href="#">contact@gofar.com</a>
+                                <p>Expedia. USA</p>
                             </div>
                         </div>
                     </div>
@@ -505,34 +517,19 @@
                         <div class="widget widget_about_us">
                             <h3>About Us</h3>
                             <div class="widget_content">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum vel dignissim dolor. Ut risus orci, aliquam sit amet semper eget, egestas aliquam felis.</p>
                             </div>
                         </div>
                     </div>
                     <!-- END / WIDGET -->
 
                     <!-- WIDGET -->
-                    <div class="col-md-2">
-                        <div class="widget widget_categories">
-                            <h3>Categiries</h3>
-                            <ul>
-                                <li><a href="#">Countries</a></li>
-                                <li><a href="#">Regions</a></li>
-                                <li><a href="#">Cities</a></li>
-                                <li><a href="#">Districts</a></li>
-                                <li><a href="#">Countries</a></li>
-                                <li><a href="#">Airports</a></li>
-                                <li><a href="#">Hotels</a></li>
-                                <li><a href="#">Places of interest</a></li>
-                            </ul>
-                        </div>
-                    </div>
+                    
                     <!-- END / WIDGET -->
 
                     <!-- WIDGET -->
                     <div class="col-md-2">
                         <div class="widget widget_recent_entries">
-                            <h3>Recent Blog</h3>
+                            <h3>Recent</h3>
                             <ul>
                                 <li><a href="#">Countries</a></li>
                                 <li><a href="#">Regions</a></li>
@@ -552,7 +549,7 @@
                         <div class="widget widget_follow_us">
                             <div class="widget_content">
                                 <p>For Special booking request, please call</p>
-                                <span class="phone">099-099-000</span>
+                                <span class="phone">000-000-000</span>
                                 <div class="awe-social">
                                     <a href="#"><i class="fa fa-twitter"></i></a>
                                     <a href="#"><i class="fa fa-pinterest"></i></a>
@@ -565,7 +562,7 @@
                     <!-- END / WIDGET -->
                 </div>
                 <div class="copyright">
-                    <p>©2015 GOFAR travel™ All rights reserved.</p>
+                    <p>©2017 Expedia travel™ All rights reserved.</p>
                 </div>
             </div>
         </footer>

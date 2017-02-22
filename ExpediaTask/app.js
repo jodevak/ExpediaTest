@@ -48,8 +48,7 @@ var prepareMap=function(obj) /////Change name to extract
 		mainJson[i]={}; //Pushing a new object
 		mainJson[i].hotelInfo={};
 		mainJson[i].hotelUrgencyInfo={};
-		mainJson[i].hotelPricingInfo={};
-		mainJson[i].hotelPricingInfo={};
+		mainJson[i].hotelPricingInfo=data.offers.Hotel[i].hotelPricingInfo;
 		mainJson[i].destination={};
 
 		//Needed parameters in main page
@@ -63,7 +62,6 @@ var prepareMap=function(obj) /////Change name to extract
 		mainJson[i].hotelInfo.carPackage=data.offers.Hotel[i].hotelInfo.carPackage;
 		mainJson[i].hotelInfo.allInclusive=data.offers.Hotel[i].hotelInfo.allInclusive;
 		mainJson[i].hotelPricingInfo.totalPriceValue=data.offers.Hotel[i].hotelPricingInfo.totalPriceValue;
-		mainJson[i].hotelPricingInfo.currency=data.offers.Hotel[i].hotelPricingInfo.currency;
 	}
 
 
