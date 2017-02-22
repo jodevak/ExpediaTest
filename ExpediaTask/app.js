@@ -108,7 +108,7 @@ app.use(cookieParser());
 
 //Expedia Main Url
 var url="https://offersvc.expedia.com/offers/v2/getOffers?scenario=deal-finder&page=foo&uid=foo&productType=Hotel";
-
+var mainURI="https://powerful-bastion-38270.herokuapp.com";
 
 
 app.get('/*', function(req, res, next){ 
@@ -135,7 +135,7 @@ fetch(URL,res,'index',function(ers,temp,obj){
 		if(obj!=undefined)
 			prepareMap(obj);
 
-	ers.render(temp, { hotels:mainJson,mainURL:"http://localhost:3000"});//res.render will send a dynamic content html page
+	ers.render(temp, { hotels:mainJson,mainURL:mainURI});//res.render will send a dynamic content html page
 	});
 
 });
@@ -146,7 +146,7 @@ app.get('/', function (req, res) {
 		if(obj!=undefined)
 			prepareMap(obj);
 
-	ers.render(temp, { hotels:mainJson,mainURL:"http://localhost:3000"});//res.render will send a dynamic content html page
+	ers.render(temp, { hotels:mainJson,mainURL:mainURI});//res.render will send a dynamic content html page
 	});
 });
 
