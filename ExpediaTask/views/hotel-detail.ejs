@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    
+    <!-- TITLE -->
+    <title>Expedia Takes</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+
+    <!-- GOOGLE FONT -->
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:700,600,400,300' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Oswald:400' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'>
+
+    <!-- CSS LIBRARY -->
+    <link rel="stylesheet" type="text/css" href="css/lib/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/lib/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="css/lib/awe-booking-font.css">
+    <link rel="stylesheet" type="text/css" href="css/lib/owl.carousel.css">
+    <link rel="stylesheet" type="text/css" href="css/lib/magnific-popup.css">
+    <link rel="stylesheet" type="text/css" href="css/lib/jquery-ui.css">
+
+    <!-- MAIN STYLE -->
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="css/demo.css">
+    
+    <!-- CSS COLOR -->
+    <link id="colorreplace" rel="stylesheet" type="text/css" href="css/colors/blue.css">
+    <style>
+       #map {
+        height: 400px;
+        width: 100%;
+       }
+    </style>
+    <script>
+      function initMap() {
+        var uluru = {lat: -25.363, lng: 131.044};
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 4,
+          center: uluru
+        });
+        var marker = new google.maps.Marker({
+          position: uluru,
+          map: map
+        });
+      }
+    </script>
+    
+    <!--[if lt IE 9]>
+        <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+        <script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
+    <![endif]-->
+</head>
+
+<!--[if IE 7]> <body class="ie7 lt-ie8 lt-ie9 lt-ie10"> <![endif]-->
+<!--[if IE 8]> <body class="ie8 lt-ie9 lt-ie10"> <![endif]-->
+<!--[if IE 9]> <body class="ie9 lt-ie10"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--> <body> <!--<![endif]-->
+
+
+
+    <!-- PAGE WRAP -->
+    <div id="page-wrap">
+        <!-- PRELOADER -->
+        <div class="preloader"></div>
+        <!-- END / PRELOADER -->
+
+        
+        <!-- HEADER PAGE -->
+        <header id="header-page">
+   
+        </header>
+        <!-- END / HEADER PAGE -->
+
+        
+        
+        <section class="product-detail">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="product-detail__info">
+                            <div class="product-title">
+                                <h2><%=hotel.hotelInfo.hotelName%></h2>
+                                <div class="hotel-star">
+                                    <% var floor=parseInt(hotel.hotelInfo.hotelStarRating);
+                                        var left=parseFloat(hotel.hotelInfo.hotelStarRating)-floor;
+                                        for(var j=0; j < floor; j++) { 
+                                         %>
+                                            <i class="fa fa-star"></i>
+                                        <%} %>
+                                         <% 
+                                        if(left!=0) { 
+                                         %>
+                                         <i class="fa fa-star-half"></i>
+                                          <%} %>          
+                                </div>
+                            </div>
+                            <div class="product-address">
+                                <span><%=hotel.destination.regionID%> <%=hotel.hotelInfo.hotelLongDestination%>  ,<%=hotel.hotelInfo.hotelStreetAddress%>.</span>
+                            </div>
+                            <div class="product-email">
+                                <a style="color:blue;text-decoration: underline'" href=<%=hotel.hotelUrls.hotelInfositeUrl%>> Visit Hotel Page On Expedia</a>
+                            </div>
+
+                            <div class="rating-trip-reviews">
+                                <div class="item good">
+                                    <span class="count"><%=hotel.hotelInfo.hotelGuestReviewRating%></span>
+                                    <h6>Guest rating</h6>
+                                </div>
+                                <div class="item">
+                                    <h6>Hotel Province/Country Code</h6>
+                                    <%=hotel.hotelInfo.hotelProvince%>/<%=hotel.hotelInfo.hotelCountryCode%>
+                                </div>
+                                <div class="item">
+                                    <h6>Car Package Score</h6>
+                                    <p><%=hotel.hotelInfo.carPackageScore%></p>
+                                </div>
+                            </div>
+
+                            <div class="product-descriptions">
+                                <p><%=hotel.hotelInfo.description%></gp>
+                            </div>
+                            
+                            <div class="property-highlights">
+                                <h3>Highlights</h3>
+                                <div class="property-highlights__content">
+                                    <div class="item">
+                                        <i class="awe-icon awe-icon-unlock"></i>
+                                        <span>Number of people Viewing : <%= hotel.hotelUrgencyInfo.numberOfPeopleViewing%></span>
+                                    </div>
+                                    <div class="item">
+                                        <i class="awe-icon awe-icon-beds"></i>
+                                        <span>Number of people booked : <%= hotel.hotelUrgencyInfo.numberOfPeopleBooked%></span>
+                                    </div>
+                                    <div class="item">
+                                        <i class="awe-icon awe-icon-beds"></i>
+                                        <span>Last booked time:<% var diff=Number(new Date().getTime())-Number(hotel.hotelUrgencyInfo.lastBookedTime)%>
+                                            <%=parseInt((diff/1000)/60/60)%> Hours Ago.
+                                        </span>
+                                    </div>
+                                    <div class="item">
+                                        <i class="awe-icon awe-icon-laundry"></i>
+                                        <span style="color:red">Sold Status : <%= hotel.hotelUrgencyInfo.almostSoldStatus%></span>
+                                    </div>
+                                      <div class="item">
+                                        <i class="awe-icon awe-icon-laundry"></i>
+                                        <span>Status Code : <%= hotel.hotelInfo.statusCode%></span>
+                                    </div>
+                                    <div class="item">
+                                        <i class="awe-icon awe-icon-unlock"></i>
+                                        <span>Air Attach :
+                                        <%if(hotel.hotelUrgencyInfo.airAttachEnabled==false){%> 
+                                                          No
+                                                           <%}%>  
+                                         <%if(hotel.hotelUrgencyInfo.airAttachEnabled!=false){%>                 
+                                                       Yes
+                                                       <%}%>  
+                                        </span>
+                              
+                                                                              </div>
+                                      </div>
+                                         <div class="item">
+                                        <i class="awe-icon awe-icon-unlock"></i>
+                                        <span style="color:green">Currency :
+                                    <%=hotel.hotelPricingInfo.currency%>
+                                        
+                                        </span>
+                                    </div><div class="item">
+                                        <i class="awe-icon awe-icon-unlock"></i>
+                                        <span >Hotel total base rate 
+                                        <%=hotel.hotelPricingInfo.hotelTotalBaseRate%>  <%=hotel.hotelPricingInfo.currency%>
+                                        
+                                        </span>
+                                    </div>
+                                   
+                                                
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-6">
+                        <div class="product-detail__gallery">
+                            <div class="product-slider-wrapper">
+                                <div class="product-slider">
+                                    <div class="item">
+                                        <img src=<%= hotel.hotelInfo.hotelImageUrl%> alt="">
+                                    </div>
+                                    <div class="item">
+                                        <img src="images/img/2.jpg" alt="">
+                                    </div>
+                                    <div class="item">
+                                        <img src="images/img/3.jpg" alt="">
+                                    </div>
+                                    <div class="item">
+                                        <img src="images/img/4.jpg" alt="">
+                                    </div>
+                                    <div class="item">
+                                        <img src="images/img/5.jpg" alt="">
+                                    </div>
+                                    <div class="item">
+                                        <img src="images/img/6.jpg" alt="">
+                                    </div>
+                                    <div class="item">
+                                        <img src="images/img/7.jpg" alt="">
+                                    </div>
+                                    <div class="item">
+                                        <img src="images/img/8.jpg" alt="">
+                                    </div>
+                                    <div class="item">
+                                        <img src="images/img/9.jpg" alt="">
+                                    </div>
+                                </div>
+                                <div class="product-slider-thumb-row">
+                                    <div class="product-slider-thumb">
+                                        <div class="item">
+                                            <img src="images/img/demo-thumb-1.jpg" alt="">
+                                        </div>
+                                        <div class="item">
+                                            <img src="images/img/demo-thumb-2.jpg" alt="">
+                                        </div>
+                                        <div class="item">
+                                            <img src="images/img/demo-thumb-3.jpg" alt="">
+                                        </div>
+                                        <div class="item">
+                                            <img src="images/img/demo-thumb-4.jpg" alt="">
+                                        </div>
+                                        <div class="item">
+                                            <img src="images/img/demo-thumb-5.jpg" alt="">
+                                        </div>
+                                        <div class="item">
+                                            <img src="images/img/demo-thumb-6.jpg" alt="">
+                                        </div>
+                                        <div class="item">
+                                            <img src="images/img/demo-thumb-7.jpg" alt="">
+                                        </div>
+                                        <div class="item">
+                                            <img src="images/img/demo-thumb-8.jpg" alt="">
+                                        </div>
+                                        <div class="item">
+                                            <img src="images/img/demo-thumb-9.jpg" alt="">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="map"></div>
+                             <script>
+                                  function initMap() {
+                                    var uluru = {lat: Number(<%=hotel.hotelInfo.hotelLatitude%>), lng: Number(<%=hotel.hotelInfo.hotelLongitude%>)};
+                                    var map = new google.maps.Map(document.getElementById('map'), {
+                                      zoom: 4,
+                                      center: uluru
+                                    });
+                                    var marker = new google.maps.Marker({
+                                      position: uluru,
+                                      map: map
+                                    });
+                                  }
+                                </script>
+                             
+                            <div class="product-map">
+                                <div data-latlong="<%=hotel.hotelInfo.hotelLocation%>"</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-9">
+                        <div class="product-tabs tabs">
+                            <ul>
+                                <li>
+                                    <a href="#tabs-1">Room detail</a>
+                                </li>
+                                <li>
+                                    <a href="#tabs-2">Promotion</a>
+                                </li>
+                                <li>
+                                    <a href="#tabs-3">Offer Date Info.</a>
+                                </li>
+                                <li>
+                                    <a href="#tabs-4">Scores</a>
+                                </li>
+                            </ul>
+                            <div class="product-tabs__content">
+                                <div id="tabs-1">
+                                    <div class="check-availability">
+                                            <div class="form-group">
+                                                <div class="form-elements form-checkin">
+                                                    <label>Check in</label>
+                                                    <div class="form-item">
+                                                     <%=hotel.hotelInfo.travelStartDate%> 
+                                                    </div>
+                                                </div>
+                                                <div class="form-elements form-checkout">
+                                                    <label>Check out</label>
+                                                    <div class="form-item">
+                                                     <%=hotel.hotelInfo.travelEndDate%> 
+                                                    </div>
+                                                </div>
+                                                <div class="form-elements form-adult">
+                                                    <label>Number Of Rooms</label>
+                                                    <div class="form-item">
+                                                        <select class="awe-select">
+                                                        <%for(var cnt=0;cnt<=Number(hotel.hotelUrgencyInfo.numberOfRoomsLeft);++cnt){
+                                                        %>
+                                                            <option><%=cnt%></option>
+                                                        <%}%>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                   <div class="form-elements form-adult">
+                                                    <label>Room Type</label>
+                                                    <div class="form-item">
+                                                        Standard Room
+                                                    </div>
+                                                </div>
+                                             
+                        
+                                                <div class="form-actions">
+                                                    <input type="submit" value="Book Now On Expedia" class="awe-btn awe-btn-style3">
+                                                </div>
+                                            </div>
+                                    </div>
+                                    <table class="room-type-table">
+                                        <thead>
+                                            <tr>
+                                                <th class="room-type">Room Pricing</th>
+                                                <th class="room-people">Average Pricing/Night</th>
+                                                <th class="room-condition">Original price/Night</th>
+                                                <th class="room-price">Today total price</th>
+                                            
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td class="room-type">
+                                                    <div class="room-thumb">
+                                                        <img src="images/thumb/1.jpg" alt="">
+                                                    </div>
+                                                    <div class="room-title">
+                                                        <h4>Standard Room</h4>
+                                                    </div>
+                                                    <div class="room-descriptions">
+                                                        <p>Prices are per room<br>Included: <%=hotel.hotelPricingInfo.hotelTotalMandatoryTaxesAndFees%> % Taxes and fees</p>
+                                                    </div>
+                                                    <div class="room-descriptions">
+                                                    <p>
+                                                        <p> <%=hotel.offerDateRange.travelStartDate[0]%>-<%=hotel.offerDateRange.travelStartDate[1]%>-<%=hotel.offerDateRange.travelStartDate[2]%>----
+                                                         <%=hotel.offerDateRange.travelEndDate[0]%>-<%=hotel.offerDateRange.travelEndDate[1]%>-<%=hotel.offerDateRange.travelEndDate[2]%> (<%=hotel.offerDateRange.lengthOfStay%> days)</p>
+                                                        
+                                                    </div>
+                                                    <div class="room-type-footer">
+                                                        <i class="awe-icon awe-icon-gym"></i>
+                                                        <i class="awe-icon awe-icon-car"></i>
+                                                        <i class="awe-icon awe-icon-food"></i>
+                                                        <i class="awe-icon awe-icon-level"></i>
+                                                        <i class="awe-icon awe-icon-wifi"></i>
+                                                    </div>
+                                                </td>
+                                                <td class="list-condition">
+                                                  <%=hotel.hotelPricingInfo.averagePriceValue%> <%=hotel.hotelPricingInfo.currency%>
+                                                </td>
+                                                <td class="room-condition">
+                                                        <%=hotel.hotelPricingInfo.originalPricePerNight%> <%=hotel.hotelPricingInfo.currency%>
+                                                </td>
+                                                <td class="room-price">
+                                                    <div class="price">
+                                                        <span class="amount"></span>
+                                                        <em>
+                                                            <%
+                                        var saved=
+                                         Number(hotel.hotelPricingInfo.originalPricePerNight)+
+                                         Number(hotel.hotelPricingInfo.hotelTotalBaseRate)+
+                                         Number(hotel.hotelPricingInfo.hotelTotalTaxesAndFees) +
+                                         Number(hotel.hotelPricingInfo.hotelTotalMandatoryTaxesAndFees)
+                                         +
+                                         Number(hotel.hotelPricingInfo.totalPriceValue);
+                                         saved=parseInt(saved);
+                                         %>
+                                            <%=saved%> <%=hotel.hotelPricingInfo.currency%>
+                                                        </em>
+                                                    </div>
+                                                </td>
+
+                                            </tr>
+                                            
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div id="tabs-2">
+                                    <table class="facilities-freebies-table">
+                                        <tbody>
+                                            <tr>
+                                                <th>
+                                                    <p>Promotion Amount</p>
+                                                </th>
+                                                <td>
+                                                    <p><%=hotel.hotelInfo.promotionAmount%> </p>
+                                                </td>
+                                            </tr>
+                                               <tr>
+                                                <th>
+                                                    <p>Promotion Description</p>
+                                                </th>
+                                                <td>
+                                                    <p><%=hotel.hotelInfo.promotionDescription%> </p>
+                                                </td>
+                                            </tr>
+                                               <tr>
+                                                <th>
+                                                    <p>Promotion Tag</p>
+                                                </th>
+                                                <td>
+                                                    <p><%=hotel.hotelInfo.promotionTag%> </p>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div id="tabs-3">
+                                    <table class="good-to-know-table">
+                                        <tbody>
+                                            <tr>
+                                                <th>
+                                                    <p>Travel Start Date</p>
+                                                </th>
+                                                <td>
+                                                    <p><%= hotel.hotelInfo.travelStartDate%></p>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th>
+                                                    <p>Travel End Date</p>
+                                                </th>
+                                                <td>
+                                                    <p><%= hotel.hotelInfo.travelEndDate%></p>
+                                                </td>
+                                            </tr>
+                                                 <tr>
+                                                <th>
+                                                    <p>Duration</p>
+                                                </th>
+                                                <td>
+                                                    <p><%= hotel.offerDateRange.lengthOfStay%></p>
+                                                </td>
+                                            </tr>
+                                          
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                                <div id="tabs-4">
+                                    <div id="reviews">
+                                        <div class="rating-info">
+                                            <div class="average-rating-review good">
+                                                <span class="count"><%=hotel.hotelInfo.rawAppealScore%></span>
+                                               
+                                            </div>
+                                            <ul class="rating-review">
+                                                <li>
+                                                    <em>Raw Appeal Score</em>
+                                                    <span><%=hotel.hotelInfo.rawAppealScore%></span>
+                                                </li>
+                                                <li>
+                                                    <em>Moving Average Score</em>
+                                                    <span><%=hotel.hotelInfo.movingAverageScore%></span>
+                                             
+                                                </li>
+                                                <li>
+                                                    <em>Relevance Score</em>
+                                                    <span><%=hotel.hotelInfo.relevanceScore%></span>
+                                                    
+                                                </li>
+                                               
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+
+        <!-- FOOTER PAGE -->
+        <footer id="footer-page">
+            <div class="container">
+                <div class="row">
+                    <!-- WIDGET -->
+                    <div class="col-md-3">
+                        <div class="widget widget_contact_info">
+                            <div class="widget_background">
+                                <div class="widget_background__half">
+                                    <div class="bg"></div>
+                                </div>
+                                <div class="widget_background__half">
+                                    <div class="bg"></div>
+                                </div>
+                            </div>
+                            <div class="logo">
+                                <img src="images/logo-footer.png" alt="">
+                            </div>
+                            <div class="widget_content">
+                                <p>Expedia. USA</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- END / WIDGET -->
+
+                    <!-- WIDGET -->
+                    <div class="col-md-2">
+                        <div class="widget widget_about_us">
+                            <h3>About Us</h3>
+                            <div class="widget_content">
+                            </div>
+                        </div>
+                    </div>
+                    <!-- END / WIDGET -->
+
+                    <!-- WIDGET -->
+                    
+                    <!-- END / WIDGET -->
+
+                    <!-- WIDGET -->
+                    <div class="col-md-2">
+                        <div class="widget widget_recent_entries">
+                            <h3>Recent</h3>
+                            <ul>
+                                <li><a href="#">Countries</a></li>
+                                <li><a href="#">Regions</a></li>
+                                <li><a href="#">Cities</a></li>
+                                <li><a href="#">Districts</a></li>
+                                <li><a href="#">Countries</a></li>
+                                <li><a href="#">Airports</a></li>
+                                <li><a href="#">Hotels</a></li>
+                                <li><a href="#">Places of interest</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- END / WIDGET -->
+
+                    <!-- WIDGET -->
+                    <div class="col-md-3">
+                        <div class="widget widget_follow_us">
+                            <div class="widget_content">
+                                <p>For Special booking request, please call</p>
+                                <span class="phone">000-000-000</span>
+                                <div class="awe-social">
+                                    <a href="#"><i class="fa fa-twitter"></i></a>
+                                    <a href="#"><i class="fa fa-pinterest"></i></a>
+                                    <a href="#"><i class="fa fa-facebook"></i></a>
+                                    <a href="#"><i class="fa fa-youtube-play"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- END / WIDGET -->
+                </div>
+                <div class="copyright">
+                    <p>©2017 Expedia travel™ All rights reserved.</p>
+                </div>
+            </div>
+        </footer>
+        <!-- END / FOOTER PAGE -->
+
+    </div>
+    <!-- END / PAGE WRAP -->
+
+    <!-- LOAD JQUERY -->
+    <script type="text/javascript" src="js/lib/jquery-1.11.2.min.js"></script>
+    <script type="text/javascript" src="js/lib/masonry.pkgd.min.js"></script>
+    <script type="text/javascript" src="js/lib/jquery.parallax-1.1.3.js"></script>
+    <script type="text/javascript" src="js/lib/jquery.owl.carousel.js"></script>
+    <script type="text/javascript" src="js/lib/theia-sticky-sidebar.js"></script>
+    <script type="text/javascript" src="js/lib/md-map-extend.js"></script>
+    <script type="text/javascript" src="js/lib/jquery.magnific-popup.min.js"></script>
+    <script type='text/javascript' src="js/lib/jquery-ui.js"></script>
+    <script type="text/javascript" src="js/scripts.js"></script>
+      <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD4rC9wLK4LM8K4QHGFc_ToyLPJdapGPSE&callback=initMap">
+    </script>
+</body>
+</html>
