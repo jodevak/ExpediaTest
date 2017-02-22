@@ -236,16 +236,20 @@
                         values=ui.values;
                     priceslider.siblings('.price_slider_amount').find('.from').text(values[0]);
                     priceslider.siblings('.price_slider_amount').find('.to').text(values[1]);
+                    if(values[0].toString()!='0' || values[1].toString()!='100' ){
                     $('#totRate1').attr('value',values[0])
                       $('#totRate2').attr('value',values[1]);
+                  }
                 }
             });
 
             var values = priceslider.slider( "option", "values");
             priceslider.siblings('.price_slider_amount').find('.from').text( values[0]);
             priceslider.siblings('.price_slider_amount').find('.to').text( values[1]);
-            $('#totRate1').attr('value',values[0])
-             $('#totRate2').attr('value',values[1]);
+if(values[0].toString()!='0' || values[1].toString()!='100' ){
+                    $('#totRate1').attr('value',values[0])
+                      $('#totRate2').attr('value',values[1]);
+                  }
         });
     }
 
