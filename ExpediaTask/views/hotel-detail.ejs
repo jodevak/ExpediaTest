@@ -102,6 +102,7 @@
                                 <span><%=hotel.destination.regionID%> <%=hotel.hotelInfo.hotelLongDestination%>  ,<%=hotel.hotelInfo.hotelStreetAddress%>.</span>
                             </div>
                             <div class="product-email">
+                            <%hotel.hotelUrls.hotelInfositeUrl=decodeURIComponent(hotel.hotelUrls.hotelInfositeUrl)%>
                                 <a style="color:blue;text-decoration: underline'" href=<%=hotel.hotelUrls.hotelInfositeUrl%>> Visit Hotel Page On Expedia</a>
                             </div>
 
