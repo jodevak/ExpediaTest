@@ -1,5 +1,4 @@
-# Simple  server side node.js that consumes Expedia.com hotel offer
-
+# Simple node.js server side that consumes Expedia.com hotel offer Json
 Expedia API:
 https://offersvc.expedia.com/offers/v2/getOffers?scenario=deal-finder&page=foo&uid=foo&productType=Hotel
 
