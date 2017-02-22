@@ -19,6 +19,9 @@ offers which in turn generates another at most 50 hotel offers, also the user ca
 Since the api request to a specific hotel is unknown, the last regular or search request will be temporarily stored/cached such that when the user
 clicks on a hotel offer the server side will respond with a another dynamic content web page containing the detailed information about the hotel offer.
 For the sake of maintining the simplicity of this app; Redis framework was not used and the stored/cached response will be just a regular stored JSON object. 
+
+important note,in case of home page, the main fetched json will be split into another one containing only fields that are necessary to be rendered in home page. --> optimization.
+
 # Prerequisite
 
 -Node.js
