@@ -34,6 +34,8 @@ var prepareMap=function(obj) /////Change name to extract
 	if(obj!=undefined && obj.offers.Hotel!=undefined) // Not Replacing cached(temp-saved) data if no results found from expedia.com
 	data=obj;
 
+
+
 	else{ 
 		console.log('No results');
 		return ;
